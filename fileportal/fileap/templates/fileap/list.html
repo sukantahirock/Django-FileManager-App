@@ -1,0 +1,15 @@
+{% extends 'fileap/base.html' %}
+{% block content %}
+<h2>Your Uploaded Files</h2>
+<ul>
+{% for file in files %}
+  <li>{{ file.filename }} |
+    <a href="{% url 'file-download' file.id %}">Download</a> |
+    <a href="{% url 'file-delete' file.id %}">Delete</a>
+  </li>
+{% empty %}
+  <li>No files found.</li>
+{% endfor %}
+</ul>
+<a href="{% url 'file-upload' %}">Upload New</a>
+{% endblock %}

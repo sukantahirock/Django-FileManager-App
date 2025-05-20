@@ -1,0 +1,27 @@
+{% extends 'fileap/base.html' %}
+{% block content %}
+<h2>Admin Panel – All User Files</h2>
+
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Filename</th>
+    <th>Owner</th>
+    <th>Uploaded At</th>
+    <th>Actions</th>
+  </tr>
+  {% for file in files %}
+  <tr>
+    <td>{{ file.id }}</td>
+    <td>{{ file.filename }}</td>
+    <td>{{ file.user.username }}</td>
+    <td>{{ file.uploaded_at }}</td>
+    <td>
+      <a href="{% url 'file-download' file.id %}">Download</a> |
+      <a href="{% url 'file-delete' file.id %}">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}
